@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NC(V) L4 | OOP Product Lab</title><style>
+:root{--navy:#1b2a41;--blue:#005596;--gold:#fdb515;--green:#187c40;--red:#b52039;--bg:#f5f8fc}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#202a35;font:17px/1.55 'Segoe UI',Arial,sans-serif}header{position:sticky;top:0;z-index:5;background:var(--navy);color:white;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}header strong{color:var(--gold)}nav{display:flex;gap:5px;flex-wrap:wrap}button{cursor:pointer;font:inherit}nav button,.btn{border:0;border-radius:8px;padding:8px 13px;background:var(--blue);color:white}nav button{background:#344760;font-size:14px}nav button.active{background:var(--gold);color:#172333;font-weight:bold}main{max-width:1120px;margin:auto;padding:22px 18px 100px}.page{display:none}.page.active{display:block}h1{color:var(--blue);font-size:2rem;margin:.2em 0}h2{color:var(--blue);margin:.2em 0 .5em}.sub{color:#566678}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid #d5deea;border-radius:14px;padding:20px;margin:14px 0}.task{border:2px solid var(--green)}.task h2{color:var(--green)}.analogy{background:#fff5d6;border-left:6px solid var(--gold);padding:14px;border-radius:8px}.key{background:#edf5fc;border-left:6px solid var(--blue);padding:14px;border-radius:8px}pre{background:#182437;color:#e9f4ff;border-radius:10px;padding:16px;overflow:auto;font:15px/1.55 Consolas,monospace}code{font-family:Consolas,monospace}select,input,textarea{font:inherit;border:1px solid #a9b8c8;border-radius:7px;padding:7px;max-width:100%}textarea{width:100%;min-height:115px;font:15px Consolas,monospace}.btn{margin:5px 5px 5px 0}.btn.alt{background:white;color:var(--blue);border:1px solid var(--blue)}.btn.green{background:var(--green)}.feedback{padding:10px;border-radius:8px;margin:10px 0;display:none}.feedback.good{display:block;background:#e6f4ea;color:#145c2d}.feedback.bad{display:block;background:#fdecee;color:#8e1630}.q{padding:12px;border:1px solid #d8e1eb;border-radius:9px;margin:10px 0}.q label{display:block;margin:5px 0}.pill{display:inline-block;background:#eaf3fc;color:#005596;padding:4px 11px;border-radius:30px;margin:3px}.progress{height:5px;background:#46556d;width:100%}.progress div{height:100%;background:var(--gold);width:0;transition:.2s}.bottom{display:flex;justify-content:space-between;margin:25px 0}.diagram{display:flex;gap:15px;flex-wrap:wrap}.diagram>div{flex:1;min-width:170px;background:#f0f6fd;border:2px solid #9ab9d8;border-radius:10px;padding:12px}.diagram b{display:block;color:var(--blue)}.mini{font-size:14px;color:#5c6877}.line{display:flex;align-items:center;gap:10px;margin:6px 0}.line button{background:#edf3fa;border:1px solid #aabbd0;border-radius:6px}.line code{flex:1;white-space:pre-wrap}.score{font-size:26px;color:var(--blue);font-weight:bold}.hidden{display:none}footer{position:fixed;bottom:0;background:var(--navy);color:white;width:100%;padding:8px 20px;font-size:14px;text-align:center}@media(max-width:750px){.grid{grid-template-columns:1fr}header{position:static}main{padding-bottom:115px}}
+</style></head><body><header><div><strong>NC(V) L4</strong> · OOP Product Lab</div><nav id="nav"></nav><span id="status">0 / 7 lessons completed</span></header><div class="progress"><div id="bar"></div></div><main>
+<section class="page active" data-title="Start"><h1>🛒 The Product Shop</h1><p class="sub">Object-Oriented Programming in VB.NET · Learn it, try it, fix it, build it.</p><div class="grid"><div class="card"><h2>Our problem</h2><p>A shop sells a wireless mouse, keyboard and headset. We want to keep each product's name, price and quantity together and let each product calculate its own total value.</p><div class="analogy"><b>Think of a class as a blank product form.</b> An object is one completed form for a real product. The class tells us which details and actions every product has.</div><p>Follow the lessons from left to right. Each lesson has a small task. You can return to any lesson.</p></div><div class="card task"><h2>Warm-up: which is an object?</h2><p>In our shop, which item is a specific object?</p><select id="warm"><option value="">Choose an answer</option><option value="a">Product (general design)</option><option value="b">Wireless Mouse, R150, 4 in stock</option><option value="c">Price (one detail)</option></select><button class="btn" onclick="checkWarm()">Check</button><div class="feedback" id="warmFb"></div></div></div><div class="card"><h2>Learning goals</h2><span class="pill">Class vs object</span><span class="pill">Attributes and methods</span><span class="pill">Public and Private</span><span class="pill">Constructors</span><span class="pill">Create and use objects</span><span class="pill">Debug VB.NET</span><span class="pill">Final challenge</span></div></section>
+<section class="page" data-title="Class & object"><h1>1. Class and object</h1><div class="grid"><div class="card"><h2>One design, many products</h2><div class="diagram"><div><b>CLASS: Product</b>name<br>price<br>quantity<br>Display()</div><div><b>OBJECT: mouse</b>Wireless Mouse<br>R150<br>4 in stock</div><div><b>OBJECT: keyboard</b>Keyboard<br>R250<br>2 in stock</div></div><p class="key">A <b>class</b> is a blueprint. An <b>object</b> is an instance created from that class. Many objects can use the same class but store different values.</p><pre>Public Class Product
+    Public name As String
+    Public price As Double
+End Class
+
+Dim mouse As New Product()
+mouse.name = "Wireless Mouse"</pre></div><div class="card task"><h2>Try it: identify the parts</h2><p>In <code>Dim mouse As New Product()</code>, what is <code>Product</code>?</p><select id="classQ"><option value="">Choose</option><option value="class">Class name</option><option value="object">Object name</option><option value="method">Method</option></select><p>What is <code>mouse</code>?</p><select id="objectQ"><option value="">Choose</option><option value="class">Class name</option><option value="object">Object name</option><option value="method">Method</option></select><button class="btn" onclick="checkPair()">Check answers</button><div id="pairFb" class="feedback"></div><p class="mini">Try changing <code>mouse</code> to <code>headset</code>. The class remains Product.</p></div></div></section>
+<section class="page" data-title="Attributes & methods"><h1>2. Attributes and methods</h1><div class="grid"><div class="card"><h2>What does a product have and do?</h2><p><b>Attributes</b> store information, such as name, price and quantity. <b>Methods</b> are functions inside a class that perform actions.</p><pre>Public Class Product
+    Public name As String
+    Public price As Double
+End Class
+
+Dim mouse As New Product()
+mouse.name = "Wireless Mouse"</pre><p><code>TotalValue()</code> is a method. It uses the object's own price and quantity.</p></div><div class="card task"><h2>Live product calculator</h2><label>Product <select id="productSel" onchange="productChange()"><option value="mouse">Wireless Mouse</option><option value="keyboard">Keyboard</option><option value="headset">Headset</option></select></label><p>Price (R) <input type="number" id="price" value="150" min="0" step="1"></p><p>Quantity <input type="number" id="qty" value="4" min="0" step="1"></p><button class="btn green" onclick="calcProduct()">▶ Call TotalValue()</button><pre id="calcOut">Click the button to run the method.</pre><div class="feedback" id="calcFb"></div></div></div></section>
+<section class="page" data-title="Access control"><h1>3. Public and private</h1><div class="grid"><div class="card"><h2>Protect your data</h2><div class="analogy">A shop's till is not open to everyone. The cashier uses approved actions to change the money. In VB.NET, <code>Private</code> keeps data inside the class; <code>Public</code> gives other code approved ways to use it.</div><pre>Public Class Product
+    Private price As Double
+    Public Sub SetPrice(p As Double)
+        If p &gt;= 0 Then price = p
+    End Sub
+End Class
+
+Dim mouse As New Product()
+mouse.Price = 150 ' ERROR: Price is Private</pre><p><code>SetPrice()</code> checks a value before saving it. <code>getPrice()</code> reads it.</p></div><div class="card task"><h2>Choose the valid line</h2><p>Suppose <code>Dim mouse As New Product()</code> exists and price is private. Which line is allowed?</p><select id="accessQ"><option value="">Choose</option><option value="a">mouse.Price = 150</option><option value="b">mouse.SetPrice(150)</option><option value="c">mouse.private = 150;</option></select><button class="btn" onclick="checkAccess()">Check</button><div class="feedback" id="accessFb"></div><h2>Test the rule</h2><input type="number" id="newPrice" value="-20"><button class="btn alt" onclick="testPrice()">Try SetPrice()</button><pre id="priceOut">Current price: R150</pre></div></div></section>
+<section class="page" data-title="Constructors"><h1>4. Constructors</h1><div class="grid"><div class="card"><h2>Give an object starting values</h2><p>A <b>constructor</b> runs when an object is created. In VB.NET, the constructor is named <code>Sub New</code> and has no return type.</p><pre>Public Class Product
+    Private name As String
+    Private price As Double
+    Public Sub New(n As String, p As Double)
+        name = n
+        price = p
+    End Sub
+End Class
+
+Dim mouse As New Product("Wireless Mouse", 150)</pre><div class="key">The constructor sets <code>name</code> to "Wireless Mouse" and <code>price</code> to 150 for this object.</div></div><div class="card task"><h2>Predict the values</h2><pre>Dim keyboard As New Product("Keyboard", 250)</pre><p>What is the object's name? <input id="ctorName" placeholder="Name"></p><p>What is its price? <input id="ctorPrice" type="number" placeholder="Price"></p><button class="btn" onclick="checkCtor()">Check</button><div id="ctorFb" class="feedback"></div></div></div></section>
+<section class="page" data-title="Trace & fix"><h1>5. Read, trace and fix code</h1><div class="grid"><div class="card task"><h2>Predict the output</h2><pre>Dim mouse As New Product("Wireless Mouse", 150, 4)
+Dim keyboard As New Product("Keyboard", 250, 2)
+Console.WriteLine(mouse.TotalValue())
+Console.WriteLine(keyboard.TotalValue())</pre><p>First line: <input id="trace1" type="number" placeholder="?"></p><p>Second line: <input id="trace2" type="number" placeholder="?"></p><button class="btn" onclick="checkTrace()">Check output</button><div class="feedback" id="traceFb"></div></div><div class="card task"><h2>Find the error</h2><pre>Public Class Product
+    Private price As Double
+    Public Sub SetPrice(p As Double)
+        If p &gt;= 0 Then price = p
+    End Sub
+End Class
+
+Dim mouse As New Product()
+mouse.Price = 150 ' ERROR: Price is Private</pre><p>Which change fixes the access error?</p><select id="bugQ"><option value="">Choose</option><option value="a">Replace mouse.Price = 150 with mouse.SetPrice(150)</option><option value="b">Replace Double with String</option><option value="c">Remove the class</option></select><button class="btn" onclick="checkBug()">Check</button><div id="bugFb" class="feedback"></div><p class="mini">The class has a default constructor because no constructor was declared.</p></div></div></section>
+<section class="page" data-title="Build a program"><h1>6. Build the full VB.NET program</h1><p class="sub">Put the steps in the correct order, then download a starter file and test it in Visual Studio.</p><div class="grid"><div class="card task"><h2>Code ordering game</h2><p>Use the arrows to put these statements in the right order inside <code>Sub Main()</code>.</p><div id="orderList"></div><button class="btn" onclick="checkOrder()">Check order</button><button class="btn alt" onclick="resetOrder()">Shuffle again</button><div class="feedback" id="orderFb"></div></div><div class="card"><h2>Practical activity</h2><p>Complete the <code>TODO</code> sections of the starter file:</p><ol><li>Create the <code>Product</code> class with private data.</li><li>Add a constructor.</li><li>Write <code>TotalValue()</code> and <code>Display()</code>.</li><li>Create three objects in <code>Sub Main()</code>.</li><li>Display each product and its stock value.</li></ol><button class="btn green" onclick="downloadVB(false)">⬇ Download VB.NET starter</button><button class="btn alt" onclick="toggleSolution()">Reveal full solution</button></div></div><div class="card hidden" id="solutionBox"><h2>Complete working solution</h2><pre id="solutionCode"></pre><button class="btn green" onclick="downloadVB(true)">⬇ Download full VB.NET solution</button><p class="mini">This page simulates selected outputs. Compile the downloaded .vb file in Visual Studio to run real VB.NET.</p></div></section>
+<section class="page" data-title="Exit quiz"><h1>7. Exit ticket</h1><p>Answer all six questions. You can retry to improve your score.</p><div class="card task"><div id="quiz"></div><button class="btn green" onclick="gradeQuiz()">Mark my quiz</button><button class="btn alt" onclick="resetQuiz()">Try again</button><div id="quizResult"></div></div><div class="card"><h2>Reflection</h2><p>In your own words: What is the difference between a class and an object?</p><textarea id="reflection" placeholder="A class is ... An object is ..."></textarea><button class="btn" onclick="saveReflection()">Save my reflection on this device</button><div class="feedback" id="reflectionFb"></div></div></section>
+<div class="bottom"><button class="btn alt" onclick="move(-1)">◀ Previous lesson</button><button class="btn" onclick="move(1)">Next lesson ▶</button></div></main><footer>NC(V) Level 4 Computer Programming · Learn → Predict → Try → Check → Build</footer>
+<script>
+const $=id=>document.getElementById(id);let page=0,done=new Set();const pages=[...document.querySelectorAll('.page')];function show(n){page=Math.max(0,Math.min(n,pages.length-1));pages.forEach((p,i)=>p.classList.toggle('active',i===page));$('nav').innerHTML=pages.map((p,i)=>`<button class="${i===page?'active':''}" onclick="show(${i})">${i===0?'Start':i+'. '+p.dataset.title}${done.has(i)?' ✓':''}</button>`).join('');$('status').textContent=done.size+' / 7 lessons completed';$('bar').style.width=(done.size/7*100)+'%';window.scrollTo(0,0)}function move(d){show(page+d)}function mark(){done.add(page);show(page)}function fb(id,ok,msg){let el=$(id);el.className='feedback '+(ok?'good':'bad');el.textContent=(ok?'✓ ':'✗ ')+msg;if(ok){done.add(page);$('status').textContent=done.size+' / 7 lessons completed';$('bar').style.width=(done.size/7*100)+'%';}}function checkWarm(){fb('warmFb',$('warm').value==='b','A completed product is an object; Product is the class design.')}function checkPair(){fb('pairFb',$('classQ').value==='class'&&$('objectQ').value==='object','Product is the class; mouse is an object.')}const products={mouse:[150,4],keyboard:[250,2],headset:[400,3]};function productChange(){let p=products[$('productSel').value];$('price').value=p[0];$('qty').value=p[1]}function calcProduct(){let p=+$('price').value,q=+$('qty').value;if(!Number.isFinite(p)||!Number.isInteger(q)||p<0||q<0){fb('calcFb',false,'Enter a price of 0 or more and a whole quantity of 0 or more.');return}$('calcOut').textContent=`TotalValue() = ${p} × ${q}\nResult: R${(p*q).toFixed(2)}`;fb('calcFb',true,'The method multiplies the price by the quantity.')}function checkAccess(){fb('accessFb',$('accessQ').value==='b','Use a public method to work with private data.')}let storedPrice=150;function testPrice(){let v=+$('newPrice').value;if($('newPrice').value!==''&&v>=0)storedPrice=v;$('priceOut').textContent='Current price: R'+storedPrice+'\n'+(v<0?'Negative price rejected.':'SetPrice() completed.')}function checkCtor(){fb('ctorFb',$('ctorName').value.trim().toLowerCase()==='keyboard'&&+$('ctorPrice').value===250,'Sub New receives Keyboard and 250.')}function checkTrace(){fb('traceFb',+$('trace1').value===600&&+$('trace2').value===500,'Mouse: 150 × 4 = 600; keyboard: 250 × 2 = 500.')}function checkBug(){fb('bugFb',$('bugQ').value==='a','A private attribute cannot be accessed directly from Sub Main(). Call the public setter.')}const lines=['Dim mouse As New Product("Wireless Mouse", 150, 4)','Dim keyboard As New Product("Keyboard", 250, 2)','Console.WriteLine(mouse.TotalValue())','Console.WriteLine(keyboard.TotalValue())','End Sub'];let order=[2,0,4,1,3];function paintOrder(){$('orderList').innerHTML=order.map((x,i)=>`<div class="line"><button onclick="swap(${i},-1)" aria-label="Move up">↑</button><button onclick="swap(${i},1)" aria-label="Move down">↓</button><code>${lines[x].replaceAll('<','&lt;')}</code></div>`).join('')}function swap(i,d){let j=i+d;if(j<0||j>=order.length)return;[order[i],order[j]]=[order[j],order[i]];paintOrder()}function resetOrder(){order=[2,0,4,1,3];paintOrder();$('orderFb').className='feedback'}function checkOrder(){fb('orderFb',order.every((x,i)=>x===i),'Create objects, call methods, then end Sub Main. The object declarations can be swapped.')}const starter=`' NC(V) Level 4 VB.NET - Product Shop STARTER
+' Create a Visual Basic Console App in Visual Studio.
+Public Class Product
+    Private name As String
+    Private price As Double
+    Private quantity As Integer
+
+    ' TODO 1: Write Public Sub New(n As String, p As Double, q As Integer)
+    ' TODO 2: Write Public Function TotalValue() As Double
+    ' TODO 3: Write Public Sub Display()
+End Class
+
+Module Program
+    Sub Main()
+        ' TODO 4: Create mouse, keyboard and headset objects
+        ' TODO 5: Call Display() for each object
+        Console.ReadLine()
+    End Sub
+End Module
+`;const solution=`' NC(V) Level 4 VB.NET - Product Shop SOLUTION
+Public Class Product
+    Private name As String
+    Private price As Double
+    Private quantity As Integer
+
+    Public Sub New(n As String, p As Double, q As Integer)
+        name = n
+        price = p
+        quantity = q
+    End Sub
+
+    Public Function TotalValue() As Double
+        Return price * quantity
+    End Function
+
+    Public Sub Display()
+        Console.WriteLine("Product: " & name)
+        Console.WriteLine("Price: R" & price)
+        Console.WriteLine("Quantity: " & quantity)
+        Console.WriteLine("Stock value: R" & TotalValue())
+        Console.WriteLine()
+    End Sub
+End Class
+
+Module Program
+    Sub Main()
+        Dim mouse As New Product("Wireless Mouse", 150, 4)
+        Dim keyboard As New Product("Keyboard", 250, 2)
+        Dim headset As New Product("Headset", 400, 3)
+        mouse.Display()
+        keyboard.Display()
+        headset.Display()
+        Console.ReadLine()
+    End Sub
+End Module
+`;function downloadVB(full){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([full?solution:starter],{type:'text/plain'}));a.download=full?'ProductShop_Solution.vb':'ProductShop_Starter.vb';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}function toggleSolution(){$('solutionBox').classList.toggle('hidden');$('solutionCode').textContent=solution;if(!$('solutionBox').classList.contains('hidden'))done.add(page)}const qs=[['What is a class?',['A blueprint for objects','A single variable','An error'],0,'A class defines a common design.'],['Which is an object?',['Dim price As Double','Dim mouse As New Product()','Public Class Product'],1,'mouse is an object of Product.'],['Which keyword hides data?',['public','return','private'],2,'Private limits direct access from outside the class.'],['What is a method?',['A function inside a class','Only a product name','A compiler'],0,'Methods describe what objects can do.'],['When does a constructor run?',['Only after Console.WriteLine','When an object is created','When a loop ends'],1,'Sub New initializes objects.'],['What is 150 × 4?',['154','600','6000'],1,'TotalValue() multiplies price by quantity.']];function paintQuiz(){$('quiz').innerHTML=qs.map((q,i)=>`<div class="q"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}<div class="mini" id="ex${i}"></div></div>`).join('')}function gradeQuiz(){let score=0;qs.forEach((q,i)=>{let v=document.querySelector(`input[name=q${i}]:checked`);let ok=v&&+v.value===q[2];if(ok)score++;$('ex'+i).textContent=(ok?'✓ Correct. ':'✗ Correct answer: '+q[1][q[2]]+'. ')+q[3];$('ex'+i).style.color=ok?'#187c40':'#b52039'});$('quizResult').innerHTML=`<p class="score">Your score: ${score} / 6</p><p>${score===6?'Excellent! You are ready for the practical.':'Review the explanations above and try again.'}</p>`;if(score>=5){done.add(page);$('bar').style.width=(done.size/7*100)+'%';$('status').textContent=done.size+' / 7 lessons completed'}}function resetQuiz(){paintQuiz();$('quizResult').innerHTML=''}function saveReflection(){try{localStorage.setItem('ncv-l4-oop-reflection',$('reflection').value);fb('reflectionFb',true,'Saved in this browser.')}catch(e){fb('reflectionFb',false,'Could not save on this device. Copy your text instead.')}}try{$('reflection').value=localStorage.getItem('ncv-l4-oop-reflection')||''}catch(e){}paintOrder();paintQuiz();show(0);
+</script></body></html>
